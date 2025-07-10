@@ -63,7 +63,7 @@ const stopPropagation = (e: Event) => (fn) => {
 }
 </script>
 
-<section class="video-background-list" full-screen-banner onclick={() => TOGGLE_VIDEO_PLAY(currentVideo)}>
+<section class="video-background-list" full-screen-banner onclick={() => TOGGLE_VIDEO_PLAY()}>
   {#each videos as video}
     <VideoBackground
       {video}
@@ -73,7 +73,7 @@ const stopPropagation = (e: Event) => (fn) => {
       onPlay={handleVideoPlay}
       onEnded={handleVideoEnded}
       onTimeupdate={handleTimeupdate}
-    ></VideoBackground>
+    />
   {/each}
 
   {#if videos.length > 0}
