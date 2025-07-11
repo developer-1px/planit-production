@@ -59,9 +59,9 @@ export const load: PageLoad = async ({ fetch, params }) => {
   ]
 
   const tags = {
-    works: ["Nike", "Samsung", "BMW", "Apple"],
-    directors: ["Kim", "Lee", "Park", "Choi"],
-    "plan v": ["Fashion", "Sport", "Tech", "Music"]
+    "plan v": ["Coming Soon"],
+    directors: ["John S. Park", "Joseph Kahn", "Kyu Ha Kim", "Zong Baik", "Than Vu", "Francis Lawrence", "Kalle Engström", "Brad Furman", "Douglas Avery", "Stacy Wall", "Blair Hayes", "Yoann Lemoine", "Henrik Hansen", "Daniel Carberry", "Marcus Domleo", "Ben Samuel"],
+    works: ["Latest", "Featured", "Awards", "Global", "Service Production"]
   }
 
   return {
