@@ -1,0 +1,1 @@
+import"../chunks/NZTpNUN0.js";import"../chunks/69_IOA4Y.js";import{f as a,a as p}from"../chunks/DhavXi9s.js";var t=a("<h1>[임시페이지] 아직 이전 못했음.</h1>");function f(o){var r=t();p(o,r)}export{f as component};
