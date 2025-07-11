@@ -1,6 +1,6 @@
 import type { PageLoad } from "./$types"
 
-export const prerender = false
+export const prerender = true
 
 export const load: PageLoad = async ({ fetch, params }) => {
   // 현재는 하드코딩된 데이터 사용
