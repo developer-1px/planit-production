@@ -132,7 +132,7 @@ onDestroy(() => {
 >
   <div player-media bind:this={videoElement}></div>
 
-  <div player-title hidden class:visible={showControls}>
+  <div player-title class:visible={showControls}>
     <h1>{video.name}</h1>
     <h2>{video.desc}</h2>
   </div>
@@ -153,10 +153,10 @@ onDestroy(() => {
     <div></div>
   </div>
 
-  <div player-btn="close" class:visible={showControls} onclick={(e) => {
+  <div player-btn="close" onclick={(e) => {
     e.stopPropagation()
     close()
-  }} hidden class:visible={showClose}>
+  }} class:visible={showControls && showClose}>
     <div></div>
   </div>
 
@@ -173,10 +173,10 @@ onDestroy(() => {
 <section popup player-popup>
   <div player-media bind:this={videoElement}></div>
 
-  <div player-btn="close" class:visible={showControls} onclick={(e) => {
+  <div player-btn="close" onclick={(e) => {
     e.stopPropagation()
     close()
-  }} hidden class:visible={showClose}>
+  }} class:visible={showControls && showClose}>
     <div></div>
   </div>
 </section>
