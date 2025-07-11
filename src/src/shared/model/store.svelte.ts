@@ -19,7 +19,7 @@ class Store {
   setTags(tags) {
     this.tags = Object.fromEntries(Object.entries(tags).map(([key, value]) => [
       key, 
-      Array.isArray(value) ? value : value.split(/\s*\n\s*/)
+      Array.isArray(value) ? value : value.split(/\s*\n\s*/).filter(Boolean)
     ]))
   }
 
