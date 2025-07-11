@@ -88,7 +88,53 @@ $effect(() => {
 })
 </script>
 
-<div class="layer" class:hidden={!visible}>
-  <video-background bind:this={element}></video-background>
+<div class="layer video-background-wrapper" class:hidden={!visible}>
+  <div class="video-background" bind:this={element}></div>
   <div class="layer bg(#000.0) pack"></div>
 </div>
+
+<style>
+  .video-background-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    overflow: hidden;
+  }
+  
+  .video-background:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000 url("/img/loading.gif") no-repeat center center;
+    background-size: auto 8px;
+  }
+  
+  .video-background :global(iframe) {
+    width: 100vw;
+    height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+    min-height: 100vh;
+    min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .hidden {
+    display: none;
+  }
+</style>

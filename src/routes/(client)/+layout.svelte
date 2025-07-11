@@ -1,6 +1,6 @@
 <script lang="ts">
-import "src/routes/(client)/(css)/base.css"
-import "src/routes/(client)/(css)/style.css"
+import "./(css)/base.css"
+import "./(css)/style.css"
 
 import Works from "src/src/widgets/(nav)/Works.svelte"
 import Directors from "src/src/widgets/(nav)/Directors.svelte"

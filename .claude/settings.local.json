@@ -17,7 +17,18 @@
       "Bash(cp:*)",
       "Bash(pnpm deploy:pages:*)",
       "Bash(gh-pages:*)",
-      "Bash(npx gh-pages:*)"
+      "Bash(npx gh-pages:*)",
+      "Bash(pnpm run:*)",
+      "WebFetch(domain:www.planit-production.com)",
+      "Bash(pnpm dev:*)",
+      "Bash(pkill:*)",
+      "Bash(true)",
+      "Bash(curl:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm check:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(pnpm preview:*)",
+      "Bash(NODE_ENV=development pnpm build)"
     ],
     "deny": []
   }

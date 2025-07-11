@@ -1,7 +1,7 @@
 <script lang="ts">
 import { onMount } from 'svelte'
 
-const { data } = $props<{ data: PageData }>()
+const { data } = $props()
 
 const blogs = data.blogs || []
 
@@ -14,7 +14,9 @@ const html = (body: string) => {
   const div = document.createElement('div')
   div.innerHTML = body
   div.querySelectorAll('img').forEach(img => {
-    img.src += '=s1024'
+    if (!img.src.includes('=s')) {
+      img.src += '=s1024'
+    }
   })
   
   return div.innerHTML
@@ -31,7 +33,7 @@ function applyMasonry() {
 
 onMount(() => {
   // 초기 실행
-  applyMasonry()
+  setTimeout(applyMasonry, 100)
   
   // 주기적으로 재조정
   const interval = setInterval(applyMasonry, 500)
@@ -55,3 +57,109 @@ onMount(() => {
     </div>
   {/each}
 </section>
+
+<style>
+  /* Grid layout for blog posts */
+  [grid-blog-content] {
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row dense;
+    grid-auto-rows: 50px;
+    gap: 0;
+  }
+  
+  @media (max-width: 767px) {
+    [grid-blog-content] {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Individual post styling */
+  [post] {
+    background: #fff;
+    overflow: hidden;
+  }
+  
+  [post][grid-masonry] {
+    grid-row-start: auto;
+  }
+  
+  /* Title bar styling */
+  [title-bar] {
+    height: 50px;
+    color: #009be0;
+    background: #fff;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+  }
+  
+  [title-bar="stress"] {
+    color: #fff;
+    background: #45b8ea;
+  }
+  
+  @media (max-width: 767px) {
+    [title-bar] {
+      font-size: 16px;
+    }
+  }
+  
+  [title-bar] [title] {
+    flex: 1;
+  }
+  
+  /* Post image */
+  [post-img] {
+    overflow: hidden;
+  }
+  
+  [post-img] img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Post description */
+  [post-desc] {
+    white-space: pre-wrap;
+    color: #333;
+    padding-top: 13px;
+    padding-bottom: 27px;
+  }
+  
+  [post-desc][blog] {
+    font-family: "Futura-MediumItalic", "Apple SD Gothic Neo", "Helvetica Neue", 'dotum', sans-serif;
+    font-weight: 400;
+    line-height: 1.8;
+  }
+  
+  [post-desc] > :global(p) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  
+  [post-desc] :global(img) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+  }
+  
+  [post-desc] :global(a[href]) {
+    color: #009be0;
+    text-decoration: underline;
+  }
+  
+  [post-desc] :global(strong) {
+    color: #000;
+    font-weight: bold;
+  }
+  
+  /* Space element */
+  [size-header] {
+    height: 74px;
+  }
+</style>

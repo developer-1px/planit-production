@@ -1,6 +1,61 @@
 import { json } from "@sveltejs/kit"
 
-export function GET() {
+export function GET({ params }) {
+  const { category, tag } = params
+  
+  // works/latest인 경우 latest 데이터 반환  
+  if (category === "works" && tag === "latest") {
+    const latestItems = [
+      {
+        status: "공개",
+        search: ["BEHOLD", "Global", "Latest"],
+        name: "BEHOLD",
+        video_url: "https://vimeo.com/810018484",
+        tags: ["Latest", "Global"],
+        created_at: "2023-03-21T06:57:59Z",
+        video_id: "810018484",
+        updated_at: "2023-03-21T06:58:06.225069Z",
+        thumbnail: null,
+        class_: ["items"],
+        video_end_at: "30",
+        id: 6202653222633472,
+        tag_categories: ["works"],
+        desc: "GALAXY UNPACKED - RIDLEY SCOTT",
+        type: null,
+        video_start_at: "10",
+        video_thumbnail: "https://i.vimeocdn.com/video/1636933408-e7727eca0dd613e056f690fe494a6831d6d45c2da888f16e31146a1a315db879-d_640"
+      },
+      {
+        status: "공개",
+        search: ["Global", "scenes", "Behind", "the", "BEHOLD", "Latest"],
+        name: "BEHOLD Behind the scenes",
+        video_url: "https://vimeo.com/810019201",
+        tags: ["Latest", "Global"],
+        created_at: "2023-03-20T18:57:13Z",
+        video_id: "810019201",
+        updated_at: "2023-03-21T07:22:48.169309Z",
+        thumbnail: {
+          src: "http://lh3.googleusercontent.com/LBQeBZlSMJ5ntXHdsabZGTZQxrtm2qJqnY_ypELXbXbJ1t3kHgZ3m45zssZPg-Vx5KxXBu6LIUIguPc26Xo__VeGz2uCf6BbIg701iQ",
+          name: "4YSJ4YWz4YSP4YWz4YSF4YW14Yar4YSJ4YWj4Ya6IDIwMjMtMDMtMjEg4YSL4YWp4YSS4YWuIDQu\r\nMjEuMDgucG5n",
+          height: 1357,
+          width: 3417,
+          path: null,
+          id: null
+        },
+        class_: ["items"],
+        video_end_at: "20",
+        id: 6293793703723008,
+        tag_categories: ["works"],
+        desc: "GALAXY UNPACKED -  RIDLEY SCOTT ",
+        type: null,
+        video_start_at: "10",
+        video_thumbnail: "https://i.vimeocdn.com/video/1636937367-1918224dbc9c879aa0f5ca7a46f0d80a33ce4d94d211e1317905f8683d0f82c3-d_640"
+      }
+    ]
+    return json(latestItems)
+  }
+  
+  // 기본 데이터 (임시)
   const items = [
     {
       status: "\uacf5\uac1c",

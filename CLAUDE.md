@@ -17,16 +17,19 @@ pnpm dev  # 주의: hang up 이슈가 있으므로 권장하지 않음
 
 ### 빌드 및 테스트
 ```bash
-pnpm build      # 프로덕션 빌드
-pnpm preview    # 빌드된 앱 미리보기
-pnpm check      # TypeScript 체크
-pnpm lint       # 코드 스타일 체크
-pnpm format     # 코드 포맷팅
+pnpm build         # 프로덕션 빌드
+pnpm build:static  # 정적 빌드 (GitHub Pages용)
+pnpm preview       # 빌드된 앱 미리보기
+pnpm check         # TypeScript 체크
+pnpm check:watch   # TypeScript 체크 (watch 모드)
+pnpm lint          # 코드 스타일 체크
+pnpm format        # 코드 포맷팅
 ```
 
 ### 배포
 ```bash
-pnpm deploy     # Google App Engine에 배포 (build 포함)
+pnpm deploy        # Google App Engine에 배포 (build 포함)
+pnpm deploy:pages  # GitHub Pages에 배포 (정적 빌드)
 ```
 
 ## 아키텍처 구조
@@ -66,8 +69,10 @@ pnpm deploy     # Google App Engine에 배포 (build 포함)
 
 ### 빌드 설정
 - Vite 기반 빌드 시스템
-- Node.js 어댑터 사용 (App Engine 배포용)
+- 현재 Static 어댑터 사용 (GitHub Pages 배포 중심)
+- Google App Engine Node.js 20 런타임 지원
 - TypeScript strict 모드 활성화
+- Adorable CSS 프레임워크 통합
 
 ## 개발 시 주의사항
 
@@ -91,9 +96,11 @@ pnpm deploy     # Google App Engine에 배포 (build 포함)
 - 레거시 코드 수정 시 기존 패턴 유지
 
 ### 배포
-- Google App Engine Node.js 20 런타임 사용
-- `app.yaml` 설정 확인
-- 빌드 후 배포 필수
+- 이중 배포 설정: GitHub Pages (정적) + Google App Engine (서버)
+- GitHub Pages: `pnpm deploy:pages` (정적 파일 배포)
+- Google App Engine: `pnpm deploy` (Node.js 20 런타임)
+- `app.yaml` 설정 확인 필요
+- 프로덕션 경로 설정: `/planit-production`
 
 ## 보고서 작성 규칙
 

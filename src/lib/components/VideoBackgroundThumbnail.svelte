@@ -114,9 +114,13 @@ onDestroy(() => {
 
 <style>
   .video-background-thumbnail {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    overflow: hidden;
     cursor: pointer;
   }
   
@@ -129,8 +133,74 @@ onDestroy(() => {
     z-index: 0;
   }
   
-  .video-background-thumbnail :global(.vimeo-container iframe) {
+  .video-background-thumbnail :global(iframe) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
+  }
+  
+  /* Thumbnail specific styles */
+  .video-background-thumbnail :global([animation-desc]) {
+    display: none;
+  }
+  
+  .video-background-thumbnail :global([thumbnail]) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center center;
+    transition: opacity 0.38s;
+    z-index: 1;
+  }
+  
+  .video-background-thumbnail :global(div[loading]) {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("/img/loading.gif") no-repeat center center;
+    background-size: auto 8px;
+    z-index: 100;
+    display: none;
+  }
+  
+  .video-background-thumbnail[attr-will-state="played"] :global(div[loading]) {
+    display: block;
+  }
+  
+  .video-background-thumbnail[attr-state="played"] :global(div[loading]) {
+    display: none;
+  }
+  
+  .video-background-thumbnail[attr-state="played"] :global([animation-desc]) {
+    display: block;
+  }
+  
+  .video-background-thumbnail[attr-state="played"] :global([thumbnail]) {
+    opacity: 0;
+  }
+  
+  .video-background-thumbnail[attr-state="played"][attr-will-state="paused"] :global(div[thumbnail]) {
+    opacity: 1;
+  }
+  
+  .video-background-thumbnail:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0);
+    z-index: 1;
   }
 </style>

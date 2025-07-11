@@ -113,3 +113,120 @@ const stopPropagation = (e: Event) => (fn) => {
     onClose={() => showVideoPlayer = false} 
   />
 {/if}
+
+<style>
+  /* Full Screen Banner */
+  [full-screen-banner] {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  /* Banner Wrap */
+  [banner-wrap] {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  /* Banner Description */
+  [banner-desc] {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    line-height: 60px;
+  }
+  @media (min-width: 768px) {
+    [banner-desc] {
+      bottom: 175px;
+    }
+  }
+  @media (max-width: 767px) {
+    [banner-desc] {
+      bottom: 164px;
+    }
+  }
+  [banner-desc] > [wrap] {
+    padding: 0 24px;
+  }
+  [banner-desc] h1 {
+    font-size: 60px;
+  }
+  [banner-desc] h2 {
+    font-size: 40px;
+  }
+  @media (max-width: 767px) {
+    [banner-desc] h1 {
+      font-size: 32px;
+    }
+    [banner-desc] h2 {
+      font-size: 24px;
+    }
+  }
+  
+  /* Banner Indicators */
+  [banner-indicators] {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 120px;
+  }
+  [banner-indicators] > [wrap] {
+    display: flex;
+    padding: 0 24px;
+  }
+  [indicator] {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  [indicator][on] {
+    background: rgba(255, 255, 255, 1);
+  }
+  
+  /* Track and Progress */
+  .track {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .progress {
+    height: 100%;
+    background: #009be0;
+    transition: width 0.1s linear;
+  }
+  
+  /* Animation */
+  .animation {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Video Background List */
+  .video-background-list {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+  }
+</style>
