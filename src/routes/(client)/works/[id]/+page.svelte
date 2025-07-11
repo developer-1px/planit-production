@@ -1,9 +1,20 @@
 <script lang="ts">
 import { page } from '$app/stores'
+import { onMount, onDestroy } from 'svelte'
 import VideoBackgroundThumbnail from '$lib/components/VideoBackgroundThumbnail.svelte'
 import VideoPlayer from '$lib/components/VideoPlayer.svelte'
+import { initMobileVideoScroll } from '$lib/utils/mobileVideoScroll'
 
 const { data } = $props()
+
+// 모바일 스크롤 비디오 재생
+let cleanup: (() => void) | undefined
+onMount(() => {
+  cleanup = initMobileVideoScroll()
+})
+onDestroy(() => {
+  cleanup?.()
+})
 
 // URL에서 카테고리와 태그 추출
 const category = "works"
