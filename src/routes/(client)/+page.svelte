@@ -1,6 +1,7 @@
 <script lang="ts">
 import { TextAnimation } from "$lib/TextAnimation"
 import VideoBackground from "src/src/shared/ui/VideoBackground.svelte"
+import VideoPlayer from "$lib/components/VideoPlayer.svelte"
 
 const { data } = $props<{ data: PageData }>()
 
@@ -51,6 +52,12 @@ const TOGGLE_VIDEO_PLAY = () => {
   isPlaying = !isPlaying
 }
 
+// 비디오 플레이어 팝업  
+let showVideoPlayer = $state(false)
+const SHOW_VIDEO_PLAYER = (video: any) => {
+  showVideoPlayer = true
+}
+
 //
 let progressPercent = $state(0)
 const handleTimeupdate = (e) => {
@@ -63,7 +70,7 @@ const stopPropagation = (e: Event) => (fn) => {
 }
 </script>
 
-<section class="video-background-list" full-screen-banner onclick={() => TOGGLE_VIDEO_PLAY()}>
+<section class="video-background-list" full-screen-banner onclick={() => SHOW_VIDEO_PLAYER(currentVideo)}>
   {#each videos as video}
     <VideoBackground
       {video}
@@ -99,3 +106,10 @@ const stopPropagation = (e: Event) => (fn) => {
     </section>
   {/if}
 </section>
+
+{#if showVideoPlayer && currentVideo}
+  <VideoPlayer 
+    video={currentVideo} 
+    onClose={() => showVideoPlayer = false} 
+  />
+{/if}
