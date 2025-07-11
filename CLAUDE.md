@@ -119,3 +119,24 @@ pnpm deploy     # Google App Engine에 배포 (build 포함)
 ## 특수 메모
 
 - 기존꺼 그대로 하나도 빠짐없이 옮겨오는게 목표야! 절대 변해선 안돼!
+
+## 개발 환경 제약사항
+
+### Claude 제한사항
+#### 미리보기 및 개발 서버 한계
+Claude는 브라우저 인터페이스나 실행 중인 애플리케이션을 볼 수 없음:
+
+- pnpm dev 및 pnpm preview로 서버 시작 시 URL 접근 불가
+- pnpm test:ui는 브라우저 UI를 볼 수 없음
+- Claude는 터미널/콘솔 출력만 확인 가능
+
+#### 효과적인 접근 방법:
+- pnpm build로 빌드 성공 확인
+- pnpm test로 기능 검증 (터미널 모드만)
+- 디버깅을 위해 console.log 문 추가
+- 동작 검증을 위한 테스트 작성
+
+#### 불필요한 명령어 주의:
+- 콘솔 오류 확인 외에는 pnpm preview 실행 자제
+- UI 접근 불가로 pnpm test:ui 실행 자제
+- 터미널 출력을 제공하는 빌드 및 테스트 명령어에 집중

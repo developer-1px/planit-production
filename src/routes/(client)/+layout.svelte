@@ -74,8 +74,6 @@ store.init()
   </footer>
 {/if}
 
-<h1>store.currentVideoId {store.currentVideoId}</h1>
-
 {#if !!store.currentVideoId}
   <VideoPlayer />
 {/if}
